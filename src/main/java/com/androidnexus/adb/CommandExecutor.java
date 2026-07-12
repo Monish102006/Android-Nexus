@@ -37,4 +37,20 @@ public class CommandExecutor {
 
     }
 
+    public static void executeProcess(String... command) {
+
+        try {
+
+            ProcessBuilder processBuilder = new ProcessBuilder(command);
+
+            processBuilder.start();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
 }
