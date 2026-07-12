@@ -28,5 +28,6 @@ public class Main {
         System.out.println("Manufacturer  : " + device.getManufacturer());
         System.out.println("Android       : " + device.getAndroidVersion());
         System.out.println("Serial Number : " + device.getSerialNumber());
+        System.out.println("Battery      : " + device.getBatteryLevel() + "%");
     }
 }

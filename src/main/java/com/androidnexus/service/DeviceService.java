@@ -42,6 +42,31 @@ public class DeviceService {
 
         device.setSerialNumber(serialNumber.trim());
 
+        String batteryInfo = CommandExecutor.executeCommand(
+                "adb",
+                "shell",
+                "dumpsys",
+                "battery"
+        );
+
+        String[] lines = batteryInfo.split("\n");
+
+        for (String line : lines) {
+
+            line = line.trim();
+
+            if (line.startsWith("level:")) {
+
+                String[] parts = line.split(":");
+
+                int batteryLevel = Integer.parseInt(parts[1].trim());
+
+                device.setBatteryLevel(batteryLevel);
+
+                break;
+            }
+        }
+
 
         return device;
     }

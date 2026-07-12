@@ -6,6 +6,7 @@ public class Device {
     private String manufacturer;
     private String androidVersion;
     private String serialNumber;
+    private int batteryLevel;
 
     public Device() {
     }
@@ -40,5 +41,13 @@ public class Device {
 
     public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
+    }
+
+    public int getBatteryLevel() {
+        return batteryLevel;
+    }
+
+    public void setBatteryLevel(int batteryLevel) {
+        this.batteryLevel = batteryLevel;
     }
 }
