@@ -35,6 +35,10 @@ public class Main {
 
         DeviceController.takeScreenshot();
 
-        DeviceController.lock();
+//        DeviceController.lock();
+//        DeviceController.recentApps();
+//        DeviceController.home();
+        DeviceController.notifications();
+
     }
 }
