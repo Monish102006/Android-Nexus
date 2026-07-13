@@ -5,6 +5,14 @@ import com.androidnexus.utils.Constants;
 
 public class DeviceController {
     public static void takeScreenshot() {
+
         ScreenshotController.takeScreenshot();
+
+    }
+
+    public static void lock() {
+
+        PowerController.lock();
+
     }
 }

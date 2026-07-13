@@ -34,5 +34,7 @@ public class Main {
         ScrcpyService.launch();
 
         DeviceController.takeScreenshot();
+
+        DeviceController.lock();
     }
 }
