@@ -5,6 +5,7 @@ import com.androidnexus.adb.DeviceDetector;
 import com.androidnexus.model.Device;
 import com.androidnexus.service.DeviceService;
 import com.androidnexus.service.ScrcpyService;
+import com.androidnexus.controller.DeviceController;
 public class Main {
 
     public static void main(String[] args) {
@@ -31,5 +32,7 @@ public class Main {
         System.out.println("Battery      : " + device.getBatteryLevel() + "%");
 
         ScrcpyService.launch();
+
+        DeviceController.takeScreenshot();
     }
 }
