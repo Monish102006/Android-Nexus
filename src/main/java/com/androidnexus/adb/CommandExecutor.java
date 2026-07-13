@@ -37,7 +37,7 @@ public class CommandExecutor {
 
     }
 
-    public static void executeProcess(String... command) {
+    public static Process executeProcess(String... command) {
 
         try {
 
@@ -50,6 +50,8 @@ public class CommandExecutor {
             e.printStackTrace();
 
         }
+
+        return null;
 
     }
 

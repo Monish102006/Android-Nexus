@@ -30,4 +30,12 @@ public class DeviceController {
     public static void quickSettings() {
         NavigationController.quickSettings();
     }
+
+    public static void startRecording() {
+        RecordingController.startRecording();
+    }
+
+    public static void stopRecording() {
+        RecordingController.stopRecording();
+    }
 }

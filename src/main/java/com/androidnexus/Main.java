@@ -5,7 +5,12 @@ import com.androidnexus.adb.DeviceDetector;
 import com.androidnexus.model.Device;
 import com.androidnexus.service.DeviceService;
 import com.androidnexus.service.ScrcpyService;
+import com.androidnexus.controller.RecordingController;
 import com.androidnexus.controller.DeviceController;
+import com.androidnexus.utils.FileNameGenerator;
+
+import java.io.IOException;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -38,7 +43,17 @@ public class Main {
 //        DeviceController.lock();
 //        DeviceController.recentApps();
 //        DeviceController.home();
-        DeviceController.notifications();
+//        DeviceController.notifications();
+
+//        RecordingController.startRecording();
+//        try {
+//            Thread.sleep(5000); // Pauses execution for 5 seconds
+//        } catch (InterruptedException e) {
+//            e.printStackTrace(); // Handles the interruption signal
+//        }
+//
+//        RecordingController.stopRecording();
+        System.out.println(FileNameGenerator.generateScreenshotName());
 
     }
 }
