@@ -147,5 +147,3 @@ mvn javafx:run
 - [x] **Module 8**: Dynamic Theme JavaFX Desktop UI.
 - [ ] **Module 9**: Local Ollama AI System Assistant.
 - [ ] **Module 10**: Recent Files & Bookmark Favorites features.
-
----
