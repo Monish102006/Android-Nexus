@@ -2,14 +2,65 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox spacing="20" alignment="CENTER"
-      xmlns="http://javafx.com/javafx/21"
+<VBox spacing="15" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.androidnexus.ui.controller.AppManagerController"
       styleClass="background-pane">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
 
-    <Label text="Application Manager" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: -text-primary;"/>
-    <Label text="List apps, install APKs, uninstall packages, and extract system packages." style="-fx-text-fill: -text-secondary;"/>
+    <!-- Top Navigation & Filter Bar -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <TextField fx:id="txtSearch" promptText="Search package or label..." prefWidth="250" styleClass="search-field" onKeyReleased="#handleSearchKey"/>
+        
+        <!-- Toggle view filters -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <RadioButton fx:id="rbAll" text="All Apps" styleClass="status-label" selected="true">
+                <toggleGroup>
+                    <ToggleGroup fx:id="appFilterGroup"/>
+                </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rbUser" text="User Apps" styleClass="status-label" toggleGroup="$appFilterGroup"/>
+            <RadioButton fx:id="rbSystem" text="System Apps" styleClass="status-label" toggleGroup="$appFilterGroup"/>
+        </HBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnRefresh" text="Refresh List" styleClass="nav-button-active" onAction="#handleRefresh"/>
+    </HBox>
+
+    <!-- App Table Grid -->
+    <TableView fx:id="tableApps" VBox.vgrow="ALWAYS" styleClass="background-pane">
+        <columns>
+            <TableColumn fx:id="colName" text="App Name" prefWidth="250"/>
+            <TableColumn fx:id="colPackage" text="Package Name" prefWidth="350"/>
+            <TableColumn fx:id="colVersion" text="Version" prefWidth="120"/>
+            <TableColumn fx:id="colType" text="Type" prefWidth="120"/>
+        </columns>
+    </TableView>
+
+    <!-- Bottom Controls Panel -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button fx:id="btnLaunch" text="Launch" onAction="#handleLaunch" styleClass="nav-button-active"/>
+        <Button fx:id="btnForceStop" text="Force Stop" onAction="#handleForceStop" styleClass="nav-button-active"/>
+        <Button fx:id="btnClearData" text="Clear Data" onAction="#handleClearData" styleClass="nav-button-active"/>
+        <Button fx:id="btnUninstall" text="Uninstall" onAction="#handleUninstall" styleClass="nav-button-active"/>
+        <Button fx:id="btnExtract" text="Extract APK" onAction="#handleExtract" styleClass="nav-button-active"/>
+        
+        <Separator orientation="VERTICAL" prefHeight="25"/>
+        
+        <!-- Sideloading interface -->
+        <Button fx:id="btnSideload" text="Sideload APK..." onAction="#handleSideload" styleClass="nav-button-active"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+        
+        <!-- Loading overlay -->
+        <HBox spacing="10" alignment="CENTER" fx:id="statusOverlay" visible="false">
+            <ProgressIndicator prefWidth="16" prefHeight="16"/>
+            <Label fx:id="lblStatus" text="Refreshing apps..." style="-fx-text-fill: -accent-color;"/>
+        </HBox>
+    </HBox>
 
 </VBox>
