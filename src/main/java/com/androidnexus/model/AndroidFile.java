@@ -29,6 +29,14 @@ public class AndroidFile {
     private String path;
     private boolean directory;
     private long size;
+    private String permissions;
+    private String owner;
+    private String group;
+    private String lastModified;
+    private String extension;
+    private String humanReadableSize;
+    private boolean symlink;
+    private String symlinkTarget;
 
     public AndroidFile() {
     }
@@ -65,6 +73,70 @@ public class AndroidFile {
         this.size = size;
     }
 
+    public String getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(String permissions) {
+        this.permissions = permissions;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public String getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(String lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
+    }
+
+    public String getHumanReadableSize() {
+        return humanReadableSize;
+    }
+
+    public void setHumanReadableSize(String humanReadableSize) {
+        this.humanReadableSize = humanReadableSize;
+    }
+
+    public boolean isSymlink() {
+        return symlink;
+    }
+
+    public void setSymlink(boolean symlink) {
+        this.symlink = symlink;
+    }
+
+    public String getSymlinkTarget() {
+        return symlinkTarget;
+    }
+
+    public void setSymlinkTarget(String symlinkTarget) {
+        this.symlinkTarget = symlinkTarget;
+    }
+
     @Override
     public String toString() {
         return "AndroidFile{" +
@@ -72,6 +144,14 @@ public class AndroidFile {
                 ", path='" + path + '\'' +
                 ", directory=" + directory +
                 ", size=" + size +
+                ", permissions='" + permissions + '\'' +
+                ", owner='" + owner + '\'' +
+                ", group='" + group + '\'' +
+                ", lastModified='" + lastModified + '\'' +
+                ", extension='" + extension + '\'' +
+                ", humanReadableSize='" + humanReadableSize + '\'' +
+                ", symlink=" + symlink +
+                ", symlinkTarget='" + symlinkTarget + '\'' +
                 '}';
     }
 }
