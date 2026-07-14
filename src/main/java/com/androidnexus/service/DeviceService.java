@@ -80,6 +80,33 @@ public class DeviceService {
         );
         device.setBatteryLevel(batteryLevel);
 
+        // ── API Level ───────────────────────────────────────────────────
+        try {
+            CommandResult sdkResult = CommandExecutor.executeCommand(
+                    "adb", "shell", "getprop", "ro.build.version.sdk"
+            );
+            device.setApiLevel(sdkResult.getOutput().trim());
+        } catch (Exception e) {
+            device.setApiLevel("Unknown");
+        }
+
+        // ── Screen Resolution ───────────────────────────────────────────
+        try {
+            device.setScreenResolution(getScreenResolution());
+        } catch (Exception e) {
+            device.setScreenResolution("Unknown");
+        }
+
+        // ── Storage Info ────────────────────────────────────────────────
+        try {
+            String[] storage = getStorageInfo();
+            device.setStorageTotal(storage[0]);
+            device.setStorageAvailable(storage[1]);
+        } catch (Exception e) {
+            device.setStorageTotal("Unknown");
+            device.setStorageAvailable("Unknown");
+        }
+
         // ── Device Capabilities ─────────────────────────────────────────
         device.setCapabilities(detectCapabilities());
 
@@ -130,5 +157,46 @@ public class DeviceService {
         }
 
         return caps;
+    }
+
+    /**
+     * Retrieves a single Android system property using getprop.
+     */
+    public static String getProperty(String propertyName) throws AdbException {
+        if (propertyName == null || propertyName.isEmpty()) {
+            throw new IllegalArgumentException("propertyName cannot be null or empty");
+        }
+        CommandResult result = CommandExecutor.executeCommand(
+                "adb", "shell", "getprop", propertyName
+        );
+        result.requireSuccess();
+        return result.getOutput().trim();
+    }
+
+    /**
+     * Retrieves the device screen resolution.
+     */
+    public static String getScreenResolution() throws AdbException {
+        CommandResult result = CommandExecutor.executeCommand(
+                "adb", "shell", "wm", "size"
+        );
+        result.requireSuccess();
+        String output = result.getOutput().trim();
+        // e.g. "Physical size: 1080x2400"
+        if (output.contains("Physical size:")) {
+            return output.substring(output.indexOf("Physical size:") + "Physical size:".length()).trim();
+        }
+        return output;
+    }
+
+    /**
+     * Retrieves device storage info [total, available].
+     */
+    public static String[] getStorageInfo() throws AdbException {
+        CommandResult result = CommandExecutor.executeCommand(
+                "adb", "shell", "df", "/data"
+        );
+        result.requireSuccess();
+        return com.androidnexus.parser.StorageParser.parseStorage(result.getOutput());
     }
 }

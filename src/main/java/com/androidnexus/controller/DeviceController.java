@@ -99,4 +99,27 @@ public class DeviceController {
     public static void mute() throws AdbException {
         AudioController.mute();
     }
+
+    // ── Device Info ─────────────────────────────────────────────────────
+
+    /**
+     * Retrieves the connected device information including hardware metrics.
+     */
+    public static com.androidnexus.model.Device getDevice() throws AdbException {
+        return com.androidnexus.service.DeviceService.getDeviceInformation();
+    }
+
+    /**
+     * Retrieves the screen resolution (width x height) of the device.
+     */
+    public static String getScreenResolution() throws AdbException {
+        return com.androidnexus.service.DeviceService.getScreenResolution();
+    }
+
+    /**
+     * Retrieves storage information: [0] = total, [1] = available.
+     */
+    public static String[] getStorageInfo() throws AdbException {
+        return com.androidnexus.service.DeviceService.getStorageInfo();
+    }
 }

@@ -29,6 +29,11 @@ public class Device {
 
     private DeviceCapabilities capabilities;
 
+    private String apiLevel;
+    private String screenResolution;
+    private String storageTotal;
+    private String storageAvailable;
+
     public Device() {
     }
 
@@ -80,6 +85,38 @@ public class Device {
         this.batteryLevel = batteryLevel;
     }
 
+    public String getApiLevel() {
+        return apiLevel;
+    }
+
+    public void setApiLevel(String apiLevel) {
+        this.apiLevel = apiLevel;
+    }
+
+    public String getScreenResolution() {
+        return screenResolution;
+    }
+
+    public void setScreenResolution(String screenResolution) {
+        this.screenResolution = screenResolution;
+    }
+
+    public String getStorageTotal() {
+        return storageTotal;
+    }
+
+    public void setStorageTotal(String storageTotal) {
+        this.storageTotal = storageTotal;
+    }
+
+    public String getStorageAvailable() {
+        return storageAvailable;
+    }
+
+    public void setStorageAvailable(String storageAvailable) {
+        this.storageAvailable = storageAvailable;
+    }
+
     @Override
     public String toString() {
         return "Device{" +
@@ -89,6 +126,10 @@ public class Device {
                 ", serialNumber='" + serialNumber + '\'' +
                 ", batteryLevel=" + batteryLevel +
                 ", capabilities=" + capabilities +
+                ", apiLevel='" + apiLevel + '\'' +
+                ", screenResolution='" + screenResolution + '\'' +
+                ", storageTotal='" + storageTotal + '\'' +
+                ", storageAvailable='" + storageAvailable + '\'' +
                 '}';
     }
 }
