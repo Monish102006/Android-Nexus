@@ -149,6 +149,3 @@ mvn javafx:run
 - [ ] **Module 10**: Recent Files & Bookmark Favorites features.
 
 ---
-
-## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
