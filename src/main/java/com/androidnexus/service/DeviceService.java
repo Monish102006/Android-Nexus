@@ -80,6 +80,55 @@ public class DeviceService {
         );
         device.setBatteryLevel(batteryLevel);
 
+        // ── Device Capabilities ─────────────────────────────────────────
+        device.setCapabilities(detectCapabilities());
+
         return device;
+    }
+
+    private static com.androidnexus.model.DeviceCapabilities detectCapabilities() {
+        com.androidnexus.model.DeviceCapabilities caps = new com.androidnexus.model.DeviceCapabilities();
+
+        // 1. Notification access
+        try {
+            CommandResult result = CommandExecutor.executeCommand(
+                    "adb", "shell", "dumpsys", "notification", "--short"
+            );
+            caps.setSupportsNotificationAccess(result.isSuccess() && !result.getOutput().contains("Permission Denial"));
+        } catch (Exception e) {
+            caps.setSupportsNotificationAccess(false);
+        }
+
+        // 2. Screen recording
+        try {
+            CommandResult result = CommandExecutor.executeCommand(
+                    "adb", "shell", "which", "screenrecord"
+            );
+            caps.setSupportsRecording(result.isSuccess() && !result.getOutput().trim().isEmpty());
+        } catch (Exception e) {
+            caps.setSupportsRecording(false);
+        }
+
+        // 3. Flashlight (check for camera flash / flashlight commands or services)
+        try {
+            CommandResult result = CommandExecutor.executeCommand(
+                    "adb", "shell", "cmd", "package", "list", "services"
+            );
+            caps.setSupportsFlashlight(result.isSuccess() && result.getOutput().contains("flashlight"));
+        } catch (Exception e) {
+            caps.setSupportsFlashlight(false);
+        }
+
+        // 4. Media control
+        try {
+            CommandResult result = CommandExecutor.executeCommand(
+                    "adb", "shell", "cmd", "package", "list", "services"
+            );
+            caps.setSupportsMediaControl(result.isSuccess() && result.getOutput().contains("media_session"));
+        } catch (Exception e) {
+            caps.setSupportsMediaControl(false);
+        }
+
+        return caps;
     }
 }

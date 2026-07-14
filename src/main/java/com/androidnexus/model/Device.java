@@ -27,7 +27,17 @@ public class Device {
     private String serialNumber;
     private int batteryLevel;
 
+    private DeviceCapabilities capabilities;
+
     public Device() {
+    }
+
+    public DeviceCapabilities getCapabilities() {
+        return capabilities;
+    }
+
+    public void setCapabilities(DeviceCapabilities capabilities) {
+        this.capabilities = capabilities;
     }
 
     public String getModel() {
@@ -78,6 +88,7 @@ public class Device {
                 ", androidVersion='" + androidVersion + '\'' +
                 ", serialNumber='" + serialNumber + '\'' +
                 ", batteryLevel=" + batteryLevel +
+                ", capabilities=" + capabilities +
                 '}';
     }
 }
