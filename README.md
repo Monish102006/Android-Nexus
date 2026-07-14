@@ -85,14 +85,8 @@ For a detailed review of the layering boundaries and concurrency model, see [Arc
 
 ```
 Android-Nexus/
-├── docs/                             # Architecture & developer docs
-│   ├── Architecture.md
-│   ├── Backend.md
-│   ├── UI.md
-│   ├── ADB.md
-│   ├── Testing.md
-│   ├── DeveloperGuide.md
-│   └── Contributing.md
+├── docs/                             # Architectural design docs
+│   └── Architecture.md
 │
 ├── src/main/
 │   ├── java/com/androidnexus/
