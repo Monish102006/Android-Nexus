@@ -2,14 +2,71 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox spacing="20" alignment="CENTER"
-      xmlns="http://javafx.com/javafx/21"
+<VBox spacing="20" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.androidnexus.ui.controller.SettingsController"
       styleClass="background-pane">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
 
-    <Label text="Settings &amp; Preferences" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: -text-primary;"/>
-    <Label text="Toggle visual themes, adjust polling intervals, and configure local target directories." style="-fx-text-fill: -text-secondary;"/>
+    <!-- Header -->
+    <VBox spacing="5">
+        <Label text="Application Settings" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: -text-primary;"/>
+        <Label text="Configure system themes, polling rates, and storage paths" style="-fx-text-fill: -text-secondary;"/>
+    </VBox>
+
+    <Separator/>
+
+    <!-- Configurations Grid -->
+    <GridPane hgap="20" vgap="20">
+        <columnConstraints>
+            <ColumnConstraints minWidth="200" prefWidth="250"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <!-- Theme Configuration -->
+        <Label text="Theme System:" style="-fx-font-weight: bold; -fx-text-fill: -text-primary; -fx-font-size: 14px;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <HBox spacing="15" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <RadioButton fx:id="rbDark" text="Dark Theme" selected="true">
+                <toggleGroup>
+                    <ToggleGroup fx:id="themeGroup"/>
+                </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rbLight" text="Light Theme" toggleGroup="$themeGroup"/>
+            <RadioButton fx:id="rbDracula" text="Dracula Theme" toggleGroup="$themeGroup"/>
+        </HBox>
+
+        <!-- Live Sync Polling rate -->
+        <Label text="Notification Sync Rate:" style="-fx-font-weight: bold; -fx-text-fill: -text-primary; -fx-font-size: 14px;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="txtSyncInterval" styleClass="search-field" prefWidth="120"/>
+            <Label text="milliseconds (minimum 500ms)" style="-fx-text-fill: -text-secondary;"/>
+        </HBox>
+
+        <!-- Directories configuration paths -->
+        <Label text="Screenshots Save Folder:" style="-fx-font-weight: bold; -fx-text-fill: -text-primary; -fx-font-size: 14px;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="txtScreenshotsFolder" HBox.hgrow="ALWAYS" styleClass="search-field"/>
+            <Button fx:id="btnBrowseScreenshots" text="Browse..." onAction="#handleBrowseScreenshots" styleClass="nav-button-active"/>
+        </HBox>
+
+        <Label text="Recordings Save Folder:" style="-fx-font-weight: bold; -fx-text-fill: -text-primary; -fx-font-size: 14px;" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="txtRecordingsFolder" HBox.hgrow="ALWAYS" styleClass="search-field"/>
+            <Button fx:id="btnBrowseRecordings" text="Browse..." onAction="#handleBrowseRecordings" styleClass="nav-button-active"/>
+        </HBox>
+    </GridPane>
+
+    <Separator/>
+
+    <!-- Save Operations -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button fx:id="btnSave" text="Save Configuration" onAction="#handleSave" styleClass="nav-button-active" prefWidth="180"/>
+        <Label fx:id="lblSaveStatus" text="Unsaved changes" style="-fx-text-fill: -text-secondary;" visible="false"/>
+    </HBox>
 
 </VBox>

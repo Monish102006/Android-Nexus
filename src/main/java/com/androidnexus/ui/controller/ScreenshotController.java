@@ -36,14 +36,14 @@ public class ScreenshotController extends BaseController {
 
     @FXML
     public void initialize() {
-        lblSavePath.setText(Constants.LOCAL_SCREENSHOT_FOLDER);
+        lblSavePath.setText(SettingsController.getScreenshotsFolder());
 
         // Optional: Load the most recently captured screenshot if available
         loadLatestScreenshotPreview();
     }
 
     private void loadLatestScreenshotPreview() {
-        File folder = new File(Constants.LOCAL_SCREENSHOT_FOLDER);
+        File folder = new File(SettingsController.getScreenshotsFolder());
         if (folder.exists()) {
             File[] files = folder.listFiles();
             if (files != null && files.length > 0) {
@@ -91,7 +91,7 @@ public class ScreenshotController extends BaseController {
 
     @FXML
     private void handleOpenFolder(ActionEvent event) {
-        File folder = new File(Constants.LOCAL_SCREENSHOT_FOLDER);
+        File folder = new File(SettingsController.getScreenshotsFolder());
         if (!folder.exists()) {
             folder.mkdirs();
         }

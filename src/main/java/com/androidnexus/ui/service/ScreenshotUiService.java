@@ -20,7 +20,7 @@ public class ScreenshotUiService {
             @Override
             protected File call() throws Exception {
                 // Ensure target folder exists
-                File folder = new File(Constants.LOCAL_SCREENSHOT_FOLDER);
+                File folder = new File(com.androidnexus.ui.controller.SettingsController.getScreenshotsFolder());
                 if (!folder.exists()) {
                     folder.mkdirs();
                 }
