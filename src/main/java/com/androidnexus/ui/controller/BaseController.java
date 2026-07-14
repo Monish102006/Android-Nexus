@@ -21,4 +21,12 @@ public abstract class BaseController {
     public void cleanup() {
         // Default empty implementation
     }
+
+    /**
+     * Called when the user types in the global search bar of the Shell.
+     * Override to filter active tables, lists, or trigger remote search.
+     */
+    public void onGlobalSearch(String query) {
+        // Default empty implementation
+    }
 }

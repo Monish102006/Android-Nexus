@@ -48,7 +48,14 @@ public class ShellController {
         // 2. Initialize Status Bar metadata
         updateStatusBar();
 
-        // 3. Highlight the default Home navigation option and load its view
+        // 3. Listen to global search changes and dispatch to active subviews
+        searchField.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (activeSubController != null) {
+                activeSubController.onGlobalSearch(newVal);
+            }
+        });
+
+        // 4. Highlight the default Home navigation option and load its view
         selectNavigationButton(btnHome);
         navigateTo("/fxml/home.fxml");
     }

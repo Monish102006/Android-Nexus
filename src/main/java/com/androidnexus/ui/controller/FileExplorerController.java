@@ -44,6 +44,8 @@ public class FileExplorerController extends BaseController {
 
     private String currentPath = "/sdcard";
     private final Stack<String> pathHistory = new Stack<>();
+    private final List<AndroidFile> allFiles = new java.util.ArrayList<>();
+    private String searchFilterQuery = "";
 
     @FXML
     public void initialize() {
@@ -150,7 +152,9 @@ public class FileExplorerController extends BaseController {
             txtPath.setText(currentPath);
             
             List<AndroidFile> files = listTask.getValue();
-            tableFiles.setItems(FXCollections.observableArrayList(files));
+            allFiles.clear();
+            allFiles.addAll(files);
+            applyFilters();
 
             hideStatus();
             btnRefresh.setDisable(false);
@@ -164,6 +168,22 @@ public class FileExplorerController extends BaseController {
         });
 
         UiThreadExecutor.runInBackground(listTask);
+    }
+
+    @Override
+    public void onGlobalSearch(String query) {
+        this.searchFilterQuery = query.toLowerCase().trim();
+        applyFilters();
+    }
+
+    private void applyFilters() {
+        List<AndroidFile> filtered = new java.util.ArrayList<>();
+        for (AndroidFile f : allFiles) {
+            if (searchFilterQuery.isEmpty() || f.getName().toLowerCase().contains(searchFilterQuery)) {
+                filtered.add(f);
+            }
+        }
+        tableFiles.setItems(FXCollections.observableArrayList(filtered));
     }
 
     @FXML
