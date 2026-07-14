@@ -2,14 +2,58 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox spacing="20" alignment="CENTER"
-      xmlns="http://javafx.com/javafx/21"
+<VBox spacing="15" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.androidnexus.ui.controller.FileExplorerController"
       styleClass="background-pane">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
 
-    <Label text="File Explorer" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: -text-primary;"/>
-    <Label text="Manage files, transfer folders, and inspect device partitions." style="-fx-text-fill: -text-secondary;"/>
+    <!-- Path & Navigation Toolbar -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button fx:id="btnBack" text="← Back" styleClass="nav-button-active" onAction="#handleBack"/>
+        <Button fx:id="btnHomeDir" text="Home" styleClass="nav-button-active" onAction="#handleHome"/>
+        <TextField fx:id="txtPath" promptText="Path" HBox.hgrow="ALWAYS" styleClass="search-field" onAction="#handlePathEnter"/>
+        <Button fx:id="btnRefresh" text="Refresh" styleClass="nav-button-active" onAction="#handleRefresh"/>
+    </HBox>
+
+    <!-- Split View: Directory Tree & Files Table -->
+    <SplitPane dividerPositions="0.25" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+        <!-- Left Panel: Tree -->
+        <VBox spacing="5" styleClass="sidebar">
+            <Label text="Device Directories" style="-fx-font-weight: bold; -fx-text-fill: -text-primary; -fx-padding: 0 0 5 0;"/>
+            <TreeView fx:id="treeDir" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-border-width: 0;"/>
+        </VBox>
+
+        <!-- Right Panel: Table -->
+        <VBox spacing="5">
+            <TableView fx:id="tableFiles" VBox.vgrow="ALWAYS" styleClass="background-pane">
+                <columns>
+                    <TableColumn fx:id="colName" text="Name" prefWidth="350"/>
+                    <TableColumn fx:id="colSize" text="Size" prefWidth="120"/>
+                    <TableColumn fx:id="colDate" text="Date Modified" prefWidth="180"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </SplitPane>
+
+    <!-- Operations Panel -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button fx:id="btnDownload" text="Download" onAction="#handleDownload" styleClass="nav-button-active"/>
+        <Button fx:id="btnUpload" text="Upload" onAction="#handleUpload" styleClass="nav-button-active"/>
+        <Button fx:id="btnNewFolder" text="New Folder" onAction="#handleNewFolder" styleClass="nav-button-active"/>
+        <Button fx:id="btnRename" text="Rename" onAction="#handleRename" styleClass="nav-button-active"/>
+        <Button fx:id="btnDelete" text="Delete" onAction="#handleDelete" styleClass="nav-button-active"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <!-- Action state label & indicator -->
+        <HBox spacing="10" alignment="CENTER" fx:id="statusOverlay" visible="false">
+            <ProgressIndicator prefWidth="16" prefHeight="16"/>
+            <Label fx:id="lblStatus" text="Loading..." style="-fx-text-fill: -accent-color;"/>
+        </HBox>
+    </HBox>
 
 </VBox>
