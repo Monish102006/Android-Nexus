@@ -1,0 +1,75 @@
+/* Global styling structure for Android Nexus */
+
+.root {
+    -fx-font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+}
+
+.background-pane {
+    -fx-background-color: -bg-primary;
+}
+
+.sidebar {
+    -fx-background-color: -bg-secondary;
+    -fx-border-color: -border-color;
+    -fx-border-width: 0 1 0 0; /* Border on right only */
+}
+
+.sidebar-title {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-secondary;
+    -fx-alignment: center-left;
+    -fx-padding: 10 15 10 15;
+    -fx-cursor: hand;
+    -fx-background-radius: 4px;
+}
+
+.nav-button:hover {
+    -fx-background-color: -bg-hover;
+    -fx-text-fill: -text-primary;
+}
+
+.nav-button-active {
+    -fx-background-color: -bg-active;
+    -fx-text-fill: -accent-color;
+    -fx-font-weight: bold;
+}
+
+.status-bar {
+    -fx-background-color: -bg-secondary;
+    -fx-border-color: -border-color;
+    -fx-border-width: 1 0 0 0; /* Border on top only */
+    -fx-padding: 5 15 5 15;
+}
+
+.status-label {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 11px;
+}
+
+.command-bar {
+    -fx-background-color: -bg-secondary;
+    -fx-border-color: -border-color;
+    -fx-border-width: 0 0 1 0; /* Border on bottom only */
+    -fx-padding: 10 15 10 15;
+}
+
+.search-field {
+    -fx-background-color: -bg-primary;
+    -fx-text-fill: -text-primary;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 6 12 6 12;
+}
+
+.search-field:focused {
+    -fx-border-color: -accent-color;
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" alignment="CENTER"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.androidnexus.ui.controller.SettingsController"
+      styleClass="background-pane">
+
+    <Label text="Settings &amp; Preferences" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: -text-primary;"/>
+    <Label text="Toggle visual themes, adjust polling intervals, and configure local target directories." style="-fx-text-fill: -text-secondary;"/>
+
+</VBox>

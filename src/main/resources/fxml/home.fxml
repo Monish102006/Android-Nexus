@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" alignment="CENTER"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.androidnexus.ui.controller.HomeController"
+      styleClass="background-pane">
+
+    <Label text="Welcome Home" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: -text-primary;"/>
+    <Label text="This is the Android Nexus device control center dashboard." style="-fx-text-fill: -text-secondary;"/>
+
+</VBox>

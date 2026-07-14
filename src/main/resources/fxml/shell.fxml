@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.androidnexus.ui.controller.ShellController"
+            styleClass="background-pane"
+            prefWidth="1200.0" prefHeight="800.0">
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox spacing="10" width="220" styleClass="sidebar" prefWidth="220" minWidth="220">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10"/>
+            </padding>
+            
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets bottom="20" left="5"/>
+                </padding>
+                <Label text="Android Nexus" styleClass="sidebar-title"/>
+            </HBox>
+            
+            <!-- Navigation Buttons -->
+            <Button fx:id="btnHome" text="Home" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavigation"/>
+            <Button fx:id="btnFiles" text="Files" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavigation"/>
+            <Button fx:id="btnApps" text="Applications" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavigation"/>
+            <Button fx:id="btnNotifs" text="Notifications" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavigation"/>
+            <Button fx:id="btnScreen" text="Screen Mirror" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavigation"/>
+            <Button fx:id="btnSettings" text="Settings" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavigation"/>
+        </VBox>
+    </left>
+
+    <!-- Top Command Search Palette -->
+    <top>
+        <HBox alignment="CENTER_RIGHT" styleClass="command-bar" spacing="10">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="5" HBox.hgrow="NEVER">
+                <!-- Search box -->
+                <TextField fx:id="searchField" promptText="Search files, apps..." styleClass="search-field" prefWidth="250"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Center Dynamic Panel -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="background-pane">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+        </StackPane>
+    </center>
+
+    <!-- Bottom Status Bar -->
+    <bottom>
+        <HBox spacing="20" alignment="CENTER_LEFT" styleClass="status-bar">
+            <Label fx:id="lblConnectionStatus" text="Status: Connected" styleClass="status-label"/>
+            <Separator orientation="VERTICAL" prefHeight="10"/>
+            <Label fx:id="lblAdbVersion" text="ADB: 1.0.41" styleClass="status-label"/>
+            <Separator orientation="VERTICAL" prefHeight="10"/>
+            <Label fx:id="lblBackgroundTasks" text="Tasks: 0 Active" styleClass="status-label"/>
+            <Separator orientation="VERTICAL" prefHeight="10"/>
+            <Label fx:id="lblActiveTheme" text="Theme: Dark" styleClass="status-label"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

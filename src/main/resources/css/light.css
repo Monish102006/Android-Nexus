@@ -1,0 +1,13 @@
+/* Light theme palette for Android Nexus */
+
+.root {
+    -bg-primary: #f9f9f9;
+    -bg-secondary: #ffffff;
+    -bg-hover: #eaeaea;
+    -bg-active: #e2f1ff;
+    -text-primary: #212121;
+    -text-secondary: #666666;
+    -border-color: #e0e0e0;
+    -accent-color: #1976d2;      /* Royal Blue */
+    -accent-hover: #1565c0;
+}

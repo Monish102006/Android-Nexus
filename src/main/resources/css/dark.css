@@ -1,0 +1,13 @@
+/* Dark theme palette for Android Nexus */
+
+.root {
+    -bg-primary: #121212;
+    -bg-secondary: #1e1e1e;
+    -bg-hover: #2d2d2d;
+    -bg-active: #2a2d32;
+    -text-primary: #e0e0e0;
+    -text-secondary: #888888;
+    -border-color: #2b2b2b;
+    -accent-color: #2196f3;      /* Android Blue */
+    -accent-hover: #42a5f5;
+}
