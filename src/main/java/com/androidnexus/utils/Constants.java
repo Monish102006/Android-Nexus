@@ -16,4 +16,7 @@ public class Constants {
 
     public static final String PHONE_STORAGE_DIRECTORY =
             "/sdcard/";
+
+    public static final String PHONE_ROOT_DIRECTORY =
+            "/sdcard";
 }

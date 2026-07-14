@@ -1,5 +1,24 @@
 package com.androidnexus.model;
 
+/**
+ * Represents a connected Android device and its system information.
+ *
+ * This is a data model (POJO) populated by {@link com.androidnexus.service.DeviceService}.
+ * All fields are retrieved from Android system properties and system services:
+ *
+ *   model          ← ro.product.model         (e.g. "Pixel 7", "SM-S918B")
+ *   manufacturer   ← ro.product.manufacturer  (e.g. "Google", "samsung")
+ *   androidVersion ← ro.build.version.release  (e.g. "14", "13")
+ *   serialNumber   ← adb get-serialno         (e.g. "28161JEGR07832")
+ *   batteryLevel   ← dumpsys battery → level   (0-100)
+ *
+ * Future expansion (Module 2 enhancement):
+ *   - Storage total / available
+ *   - Screen resolution
+ *   - API level (ro.build.version.sdk)
+ *   - Build number (ro.build.display.id)
+ *   - Security patch (ro.build.version.security_patch)
+ */
 public class Device {
 
     private String model;
@@ -49,5 +68,16 @@ public class Device {
 
     public void setBatteryLevel(int batteryLevel) {
         this.batteryLevel = batteryLevel;
+    }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "model='" + model + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", androidVersion='" + androidVersion + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", batteryLevel=" + batteryLevel +
+                '}';
     }
 }

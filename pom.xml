@@ -4,14 +4,118 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>com.androidnexus</groupId>
     <artifactId>Android-Nexus</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Android Nexus</name>
+    <description>
+        Enterprise-grade Android device management suite.
+        Communicates with Android devices via ADB for device control,
+        file management, application management, and screen mirroring.
+    </description>
 
     <properties>
+        <!-- Java version -->
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Dependency versions (centralized for maintainability) -->
+        <javafx.version>21.0.2</javafx.version>
+        <junit.version>5.10.2</junit.version>
+        <slf4j.version>2.0.12</slf4j.version>
+        <logback.version>1.5.3</logback.version>
     </properties>
+
+    <dependencies>
+        <!--
+            JavaFX — Declared now for Module 8 (Dashboard).
+            These are compile-time dependencies but won't be used until
+            MainWindow.java is implemented. Declaring them early ensures
+            the dependency resolution is validated before we need them.
+        -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!--
+            JUnit 5 — Testing framework.
+            Used for unit testing parsers, services, and utilities.
+        -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+            SLF4J + Logback — Structured logging.
+            Replaces System.out.println and e.printStackTrace() with
+            proper log levels (DEBUG, INFO, WARN, ERROR) and file output.
+            Will be integrated incrementally as modules are developed.
+        -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+                Maven Compiler Plugin — Explicitly configured for Java 21.
+                Ensures consistent compilation across different Maven versions
+                and environments (CI, team members' machines).
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.12.1</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+
+            <!--
+                Maven Surefire Plugin — Runs JUnit 5 tests during "mvn test".
+                Version 3.2.5 has native JUnit 5 support without extra config.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+
+            <!--
+                JavaFX Maven Plugin — Runs JavaFX applications.
+                Will be configured with mainClass when Module 8 is implemented.
+            -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.androidnexus.Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
