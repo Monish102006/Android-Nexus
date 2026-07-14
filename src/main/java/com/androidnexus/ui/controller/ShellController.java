@@ -33,6 +33,7 @@ public class ShellController {
     @FXML private Label lblActiveTheme;
 
     private Button activeButton;
+    private BaseController activeSubController;
 
     @FXML
     public void initialize() {
@@ -93,6 +94,11 @@ public class ShellController {
 
     private void navigateTo(String fxmlPath) {
         try {
+            // Trigger cleanup on the old sub-controller before detaching
+            if (activeSubController != null) {
+                activeSubController.cleanup();
+            }
+
             contentArea.getChildren().clear();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent view = loader.load();
@@ -100,7 +106,10 @@ public class ShellController {
             // Link ShellController back to sub-controllers for context updates
             Object controller = loader.getController();
             if (controller instanceof BaseController) {
-                ((BaseController) controller).setShellController(this);
+                activeSubController = (BaseController) controller;
+                activeSubController.setShellController(this);
+            } else {
+                activeSubController = null;
             }
 
             contentArea.getChildren().add(view);

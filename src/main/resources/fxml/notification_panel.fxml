@@ -2,14 +2,61 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox spacing="20" alignment="CENTER"
-      xmlns="http://javafx.com/javafx/21"
+<VBox spacing="15" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.androidnexus.ui.controller.NotificationController"
       styleClass="background-pane">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
 
-    <Label text="Notifications Panel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: -text-primary;"/>
-    <Label text="View status bar notifications, apply package filters, and dismiss entries." style="-fx-text-fill: -text-secondary;"/>
+    <!-- Header & Filter Bar -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <VBox HBox.hgrow="ALWAYS">
+            <Label text="Active Notifications" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: -text-primary;"/>
+            <Label text="View and manage current status bar entries" style="-fx-text-fill: -text-secondary;"/>
+        </VBox>
+        <Button fx:id="btnRefresh" text="Refresh" styleClass="nav-button-active" onAction="#handleRefresh"/>
+    </HBox>
+
+    <!-- Tabs/Filters HBox -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <ToggleButton fx:id="tbAll" text="All" styleClass="nav-button-active" selected="true">
+            <toggleGroup>
+                <ToggleGroup fx:id="notificationFilters"/>
+            </toggleGroup>
+        </ToggleButton>
+        <ToggleButton fx:id="tbWhatsApp" text="WhatsApp" styleClass="nav-button-active" toggleGroup="$notificationFilters"/>
+        <ToggleButton fx:id="tbGmail" text="Gmail" styleClass="nav-button-active" toggleGroup="$notificationFilters"/>
+        <ToggleButton fx:id="tbTelegram" text="Telegram" styleClass="nav-button-active" toggleGroup="$notificationFilters"/>
+        <ToggleButton fx:id="tbSystem" text="System" styleClass="nav-button-active" toggleGroup="$notificationFilters"/>
+    </HBox>
+
+    <!-- Notification Table View -->
+    <TableView fx:id="tableNotifications" VBox.vgrow="ALWAYS" styleClass="background-pane">
+        <columns>
+            <TableColumn fx:id="colPackage" text="App / Package" prefWidth="250"/>
+            <TableColumn fx:id="colTitle" text="Title" prefWidth="250"/>
+            <TableColumn fx:id="colText" text="Message Content" prefWidth="400"/>
+            <TableColumn fx:id="colTime" text="Time" prefWidth="150"/>
+            <TableColumn fx:id="colAction" text="Action" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <!-- Bottom Controls -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <CheckBox fx:id="cbLiveSync" text="Live Sync (Auto Refresh)" onAction="#handleLiveSyncToggle" styleClass="status-label"/>
+        <Button fx:id="btnDismissAll" text="Dismiss All Swipable" onAction="#handleDismissAll" styleClass="nav-button-active"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        
+        <!-- Status indicator -->
+        <HBox spacing="10" alignment="CENTER" fx:id="statusOverlay" visible="false">
+            <ProgressIndicator prefWidth="16" prefHeight="16"/>
+            <Label fx:id="lblStatus" text="Refreshing..." style="-fx-text-fill: -accent-color;"/>
+        </HBox>
+    </HBox>
 
 </VBox>
