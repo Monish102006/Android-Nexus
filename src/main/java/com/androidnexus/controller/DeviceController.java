@@ -38,4 +38,16 @@ public class DeviceController {
     public static void stopRecording() {
         RecordingController.stopRecording();
     }
+
+    public static void volumeUp() {
+        AudioController.volumeUp();
+    }
+
+    public static void volumeDown() {
+        AudioController.volumeDown();
+    }
+
+    public static void mute() {
+        AudioController.mute();
+    }
 }

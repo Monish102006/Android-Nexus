@@ -10,8 +10,7 @@ public class CommandExecutor {
 
         try {
 
-            ProcessBuilder processBuilder =
-                    new ProcessBuilder(command);
+            ProcessBuilder processBuilder = new ProcessBuilder(command);
 
             Process process = processBuilder.start();
 
@@ -41,9 +40,10 @@ public class CommandExecutor {
 
         try {
 
-            ProcessBuilder processBuilder = new ProcessBuilder(command);
+            ProcessBuilder processBuilder =
+                    new ProcessBuilder(command);
 
-            processBuilder.start();
+            return processBuilder.start();
 
         } catch (IOException e) {
 

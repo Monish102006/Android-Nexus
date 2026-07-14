@@ -1,4 +1,4 @@
 package com.androidnexus.controller;
 
-public class FlashlightController {
+public class SystemController {
 }

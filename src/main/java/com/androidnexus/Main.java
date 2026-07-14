@@ -30,15 +30,13 @@ public class Main {
         }
         Device device = DeviceService.getDeviceInformation();
 
-        System.out.println("Model         : " + device.getModel());
-        System.out.println("Manufacturer  : " + device.getManufacturer());
-        System.out.println("Android       : " + device.getAndroidVersion());
-        System.out.println("Serial Number : " + device.getSerialNumber());
-        System.out.println("Battery      : " + device.getBatteryLevel() + "%");
+//        System.out.println("Model         : " + device.getModel());
+//        System.out.println("Manufacturer  : " + device.getManufacturer());
+//        System.out.println("Android       : " + device.getAndroidVersion());
+//        System.out.println("Serial Number : " + device.getSerialNumber());
+//        System.out.println("Battery      : " + device.getBatteryLevel() + "%");
 
-        ScrcpyService.launch();
-
-        DeviceController.takeScreenshot();
+//        ScrcpyService.launch();
 
 //        DeviceController.lock();
 //        DeviceController.recentApps();
@@ -53,7 +51,12 @@ public class Main {
 //        }
 //
 //        RecordingController.stopRecording();
-        System.out.println(FileNameGenerator.generateScreenshotName());
 
+//        DeviceController.takeScreenshot();
+//        System.out.println(FileNameGenerator.generateScreenshotName());
+
+        DeviceController.volumeUp();
+//        DeviceController.volumeDown();
+//        DeviceController.mute();
     }
 }
