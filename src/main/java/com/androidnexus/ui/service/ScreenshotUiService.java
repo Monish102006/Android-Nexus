@@ -52,15 +52,28 @@ public class ScreenshotUiService {
         return new Task<>() {
             @Override
             protected Boolean call() throws Exception {
-                ProcessBuilder pb;
+                // Fetch the active device serial number
+                String serial = "";
+                try {
+                    com.androidnexus.adb.CommandResult result = com.androidnexus.adb.CommandExecutor.executeCommand("adb", "get-serialno");
+                    serial = result.getOutput().trim();
+                } catch (Exception ignored) {}
+
+                java.util.List<String> command = new java.util.ArrayList<>();
                 File localScrcpy = new File(Constants.SCRCPY_PATH);
                 
                 if (localScrcpy.exists()) {
-                    pb = new ProcessBuilder(localScrcpy.getAbsolutePath());
+                    command.add(localScrcpy.getAbsolutePath());
                 } else {
-                    // Fallback to path resolution
-                    pb = new ProcessBuilder("scrcpy");
+                    command.add("scrcpy");
                 }
+
+                if (serial != null && !serial.isEmpty() && !serial.contains("unknown") && !serial.contains("error")) {
+                    command.add("-s");
+                    command.add(serial);
+                }
+
+                ProcessBuilder pb = new ProcessBuilder(command);
 
                 try {
                     pb.start();
