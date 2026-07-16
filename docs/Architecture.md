@@ -10,40 +10,40 @@ Android Nexus is designed with strict layering boundaries to decouple the presen
 
 ```mermaid
 graph TD
-    subgraph Presentation Layer
+    subgraph PresentationLayer ["Presentation Layer"]
         FXML[FXML Layouts] --> Controller[View Controllers]
     end
 
-    subgraph UI Service Layer
+    subgraph UiServiceLayer ["UI Service Layer"]
         Controller --> UiService[UI Services]
         UiService --> Executor[UiThreadExecutor]
     end
 
-    subgraph Backend Facade Layer
+    subgraph BackendFacadeLayer ["Backend Facade Layer"]
         UiService --> BackendController[Backend Controllers]
     end
 
-    subgraph Service & Parser Layer
+    subgraph ServiceParserLayer ["Service & Parser Layer"]
         BackendController --> Service[Services]
         Service --> Parser[Parsers]
     end
 
-    subgraph Infrastructure Layer
+    subgraph InfrastructureLayer ["Infrastructure Layer"]
         Service --> CmdExec[CommandExecutor]
         CmdExec --> Proc[ProcessBuilder]
     end
 
-    subgraph On-Device Execution
+    subgraph OnDeviceExecution ["On-Device Execution"]
         Proc --> ADB[ADB Daemon]
         ADB --> Android[Android System]
     end
 
-    style Presentation Layer fill:#2d3748,stroke:#4a5568,stroke-width:2px;
-    style UI Service Layer fill:#1a202c,stroke:#2d3748,stroke-width:2px;
-    style Backend Facade Layer fill:#2b6cb0,stroke:#3182ce,stroke-width:2px;
-    style Service & Parser Layer fill:#2c5282,stroke:#2b6cb0,stroke-width:2px;
-    style Infrastructure Layer fill:#276749,stroke:#2f855a,stroke-width:2px;
-    style On-Device Execution fill:#744210,stroke:#975a16,stroke-width:2px;
+    style PresentationLayer fill:#2d3748,stroke:#4a5568,stroke-width:2px;
+    style UiServiceLayer fill:#1a202c,stroke:#2d3748,stroke-width:2px;
+    style BackendFacadeLayer fill:#2b6cb0,stroke:#3182ce,stroke-width:2px;
+    style ServiceParserLayer fill:#2c5282,stroke:#2b6cb0,stroke-width:2px;
+    style InfrastructureLayer fill:#276749,stroke:#2f855a,stroke-width:2px;
+    style OnDeviceExecution fill:#744210,stroke:#975a16,stroke-width:2px;
 ```
 
 ---
