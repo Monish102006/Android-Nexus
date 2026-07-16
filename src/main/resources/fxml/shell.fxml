@@ -12,7 +12,7 @@
 
     <!-- Left Sidebar -->
     <left>
-        <VBox spacing="10" width="220" styleClass="sidebar" prefWidth="220" minWidth="220">
+        <VBox spacing="10" styleClass="sidebar" prefWidth="220" minWidth="220">
             <padding>
                 <Insets top="20" right="10" bottom="20" left="10"/>
             </padding>
