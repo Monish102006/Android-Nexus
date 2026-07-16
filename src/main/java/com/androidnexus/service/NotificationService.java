@@ -106,9 +106,10 @@ public class NotificationService {
             throw new IllegalArgumentException("notificationKey cannot be null or empty");
         }
 
-        // On Android 8.0+, cmd notification dismiss is the most portable command
+        // Use 'cmd notification snooze' to dismiss the notification, wrapping in single quotes to escape pipes (|)
+        String escapedKey = "'" + notificationKey + "'";
         CommandResult result = CommandExecutor.executeCommand(
-                "adb", "shell", "cmd", "notification", "dismiss", notificationKey
+                "adb", "shell", "cmd", "notification", "snooze", "--for", "31536000000000", escapedKey
         );
         result.requireSuccess();
     }

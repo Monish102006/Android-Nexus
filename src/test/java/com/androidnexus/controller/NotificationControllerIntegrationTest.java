@@ -31,7 +31,8 @@ public class NotificationControllerIntegrationTest {
         // 1. Post a test notification via adb cmd notification post
         String title = "NexusIntegrationTestTitle_" + System.currentTimeMillis();
         String text = "TestBody_" + System.currentTimeMillis();
-        String tag = "NexusTag";
+        // Use dynamic tag to avoid collisions with any previously snoozed notification keys!
+        String tag = "NexusTag_" + System.currentTimeMillis();
 
         // cmd notification post [-t title] <tag> <text>
         CommandResult postResult = CommandExecutor.executeCommand(
@@ -46,7 +47,7 @@ public class NotificationControllerIntegrationTest {
         // 2. Fetch all active notifications and find our test entry
         List<Notification> active = NotificationController.getActiveNotifications();
         assertNotNull(active);
-        
+
         Notification target = null;
         for (Notification n : active) {
             if (n.getPackageName().equals("com.android.shell") && title.equals(n.getTitle())) {
