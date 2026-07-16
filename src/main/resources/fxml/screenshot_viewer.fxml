@@ -57,7 +57,7 @@
                 <Button fx:id="btnMute" text="Mute Toggle" onAction="#handleMute" styleClass="nav-button-active" maxWidth="Infinity"/>
             </VBox>
 
-            <Region VBox.hgrow="ALWAYS"/>
+            <Region VBox.vgrow="ALWAYS"/>
 
             <!-- Status Indicator Overlay -->
             <HBox spacing="10" alignment="CENTER" fx:id="statusOverlay" visible="false">
